@@ -1,0 +1,95 @@
+# Command to start a fresh environment.
+# docker-compose stop && docker-compose rm -f && docker-compose up -d --build
+
+version: '3'
+
+networks:
+    default:
+        external:
+            name: dev
+
+services:
+
+    nginx-proxy:
+        image: jwilder/nginx-proxy:alpine
+        container_name: proxy
+        privileged: true
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock
+            - ./config/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf
+            # - ./certificates/:/etc/nginx/certs
+
+    # prometheus:
+    #     image: prom/prometheus
+    #     container_name: prometheus
+    #     ports:
+    #         - "9901:9090"
+    #     volumes:
+    #         - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+
+    portainer:
+        image: portainer/portainer
+        container_name: portainer
+        ports:
+            - "9900:9000"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - ./data/portainer:/data:cached
+
+     mongo:
+         image: mongo
+         container_name: mongo
+         volumes:
+             - ./data/mongo:/data
+             - ./data/mongoSeed/:/tmp/mongoSeed/
+ #        environment:
+ #            MONGO_INITDB_ROOT_USERNAME: root
+ #            MONGO_INITDB_ROOT_PASSWORD: root
+
+     mongo-express:
+         image: mongo-express
+         container_name: mongo-express
+         restart: always
+         ports:
+           - 8081:8081
+         volumes:
+             - ./data/mongoExpress:/data/conf
+ #        environment:
+ #            ME_CONFIG_MONGODB_ADMINUSERNAME: root
+ #            ME_CONFIG_MONGODB_ADMINPASSWORD: root
+
+     redis:
+         image: redis
+         container_name: redis
+         ports:
+             - "6379:6379"
+         volumes:
+             - ./data/redis:/data
+
+    # mysql:
+    #     image: mysql:5.7
+    #     container_name: mysql
+    #     ports:
+    #         - "3306:3306"
+    #     volumes:
+    #         - ./.data/mysql:/var/lib/mysql
+    #         # Ensure MySql 5.7 is running in "disable strict SQL mod". [03/2018]
+    #         - ./config/mysqlConfig/:/etc/mysql/conf.d/
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: root
+
+    # mariadb:
+    #     image: mariadb
+    #     container_name: mariadb
+    #     restart: always
+    #     ports:
+    #         - "3307:3306"
+    #     volumes:
+    #         - ./.data/mariadb:/var/lib/mysql:cached #for Mac
+    #         # Ensure MySql 5.7 is running in "disable strict SQL mod". [03/2018]
+    #         # - ./config/mysqlConfig/:/etc/mysql/conf.d/:cached #for Mac
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: root
