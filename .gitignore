@@ -1,0 +1,10 @@
+/app1/*
+!/app1/.gitkeep
+/app2/*
+!/app2/.gitkeep
+/vendor/
+/.idea/
+/node_modules/*
+.vscode
+/environment/data/*
+/environment/data/.gitkeep

@@ -1,9 +1,0 @@
-
-# PHPStorm:
-.idea/*
-
-# Volumes of containers
-.data/*
-
-portainer/*
-!portainer/.gitkeep
