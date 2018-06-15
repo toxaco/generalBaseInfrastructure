@@ -52,6 +52,10 @@ case ${start_app1:0:1} in y|Y )
         cd ./../../
     else
         printf "\n $DIRECTORY Does not exits!!! \n";
+        read -p '[App] Do you wish to remove this app? (y/n) ' app_remove
+        case ${app_remove:0:1} in y|Y )
+            sudo rm -Rf ./app1
+        esac
     fi
 esac
 case ${start_app2:0:1} in y|Y )
@@ -63,6 +67,10 @@ case ${start_app2:0:1} in y|Y )
         cd ./../../
     else
         printf "\n $DIRECTORY Does not exits!!! \n";
+        read -p '[App] Do you wish to remove this app? (y/n) ' app_remove
+        case ${app_remove:0:1} in y|Y )
+            sudo rm -Rf ./app2
+        esac
     fi
 esac
 case ${start_app3:0:1} in y|Y )
@@ -74,17 +82,24 @@ case ${start_app3:0:1} in y|Y )
         cd ./../../
     else
         printf "\n $DIRECTORY Does not exits!!! \n";
+        read -p '[App] Do you wish to remove this app? (y/n) ' app_remove
+        case ${app_remove:0:1} in y|Y )
+            sudo rm -Rf ./app3
+        esac
     fi
 esac
 case ${start_app4:0:1} in y|Y )
     DIRECTORY="./app4/deploy/"
-
     if [ -d "$DIRECTORY" ]; then
         cd "$DIRECTORY"
         sudo ./deployDev.sh
         cd ./../../
     else
         printf "\n $DIRECTORY Does not exits!!! \n";
+        read -p '[App] Do you wish to remove this app? (y/n) ' app_remove
+        case ${app_remove:0:1} in y|Y )
+            sudo rm -Rf ./app4
+        esac
     fi
 esac
 
