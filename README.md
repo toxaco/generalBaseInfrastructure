@@ -5,7 +5,7 @@ Created by Rafael (contact@rafaelphp.com)
 ------------
 
  * Run the this command (from your desired directory):
- ``git clone https://github.com/toxaco/generalBaseInfrastructure.git . && rm ./app1/.gitkeep && rm ./app2/.gitkeep && rm ./app3/.gitkeep && rm ./app4/.gitkeep && rm -Rf ./.git``
+ ``git clone https://github.com/toxaco/generalBaseInfrastructure.git . && rm ./app1/.gitkeep && rm ./app2/.gitkeep && rm ./app3/.gitkeep && rm ./app4/.gitkeep && rm -Rf ./.git rm ./.gitignore``
  * Clone your applications into app1, app2, etc. (use dot at the end of "git clone"). Example: 
    - ``cd app1 && git clone https://github.com/toxaco/generalBaseInfrastructure.git .``
  * Place your mongoDb migrations into the "./environment/data/mongoSeed/<DB_NAME>/" folder and adjust deployDev.sh 
