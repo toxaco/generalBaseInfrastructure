@@ -4,14 +4,18 @@ Automated Deployment Scripts (Docker)
 Created by Rafael (contact@rafaelphp.com)
 ------------
 
- * Clone master branch of this repo:
- ``https://github.com/toxaco/generalBaseInfrastructure.git``
+ * Run the this command (from your desired directory):
+ ``git clone https://github.com/toxaco/generalBaseInfrastructure.git . && rm ./app1/.gitignore && rm ./app2/.gitignore && rm ./.git``
  * Clone your applications into app1, app2, etc. (use dot at the end of "git clone"). Example: 
    - ``cd app1 && git clone https://github.com/toxaco/generalBaseInfrastructure.git .``
  * Place your mongoDb migrations into the "./environment/data/mongoSeed/<DB_NAME>/" folder and adjust deployDev.sh 
- * Execute the deployDev.sh.
- * Once it's finished (may take some time for the first time), open this link and enter your desired password:
-    - [Admin Panel](http://localhost:9900)
+ * Execute this command:
+ ``sudo ./deployDev.sh``
+ * Once it's finished (may take some time for the first time):
+    - Open this [Admin Panel](http://localhost:9900)
+    - Enter your desired password.
+    - Select "Manage local instances" (or something like this).
+        - All the necessary settings have been done for it.
  * That's it, you are all setup.
  
 
@@ -22,7 +26,7 @@ Details
  * Use the admin panel to manage the containers.
  
  
- Docker Images:
+ Docker Images:pa
  ---------
  
  You can use these docker images to build your docker-compose applications:

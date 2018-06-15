@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sudo printf "\n\n\n\n\n\n\n\n Welcome to the setup. (Max exec time is ~10min) \n\n"
+
 # Check for docker.
 if [ "$(docker version | grep version)" == '' ]; then
 	printf "\n\n\n\n Please, first install docker AND docker-compose \n\n";
@@ -8,13 +10,13 @@ if [ "$(docker version | grep version)" == '' ]; then
 	exit;
 fi
 
-sudo echo "Welcome to the setup. (Max exec time is ~10min)"
-
 read -p '[environment] Remove .git for environment? (y/n) ' remove_git
 read -p '[environment] Do you wish to start/restart the Environment? (y/n) ' start_env
 read -p '[environment] Do you wish to seed the MongoDB? (y/n) ' seed_mongo
 read -p '[App] Do you wish to start/restart app1? (y/n) ' start_app1
 read -p '[App] Do you wish to start/restart app2? (y/n) ' start_app2
+read -p '[App] Do you wish to start/restart app3? (y/n) ' start_app3
+read -p '[App] Do you wish to start/restart app4? (y/n) ' start_app4
 
 case ${remove_git:0:1} in y|Y )
     rm -Rf ./.git
@@ -22,7 +24,8 @@ esac
 
 case ${start_env:0:1} in y|Y )
     # Allow XDebuger to work properly.
-    docker network create dev >/dev/null && sudo ifconfig lo0 alias 10.254.254.254;
+    docker network create dev
+    sudo ifconfig lo0 alias 10.254.254.254
 
     # Init Environment.
     cd ./environment/ && docker-compose stop && docker-compose rm -f >/dev/null && docker-compose --log-level ERROR up -d --build >/dev/null 
@@ -30,7 +33,7 @@ case ${start_env:0:1} in y|Y )
 esac
 
 case ${seed_mongo:0:1} in y|Y )
-    printf "\n\n\n\n Test mongo has been seeded! \n\n";
+    printf "\n\n\n\n Please edit deployDev.sh to have it working. \n\n";
 	# Execute MongoDb Seeding
 #	docker exec -t mongo mongorestore --host mongo --db <db_name> /tmp/mongoSeed/<db_name>/ >/dev/null;
 
@@ -40,14 +43,49 @@ case ${seed_mongo:0:1} in y|Y )
 	#docker exec -t mongodump --host <host:port> --db <databaseName> --authenticationDatabase <db_name> --username <username> --password <password> --out /var/www/html/deploy/dump
 esac
 
-# Deploy dev.start_app1.com
 case ${start_app1:0:1} in y|Y )
-    cd ./app1/deploy/ && ./deployDev.sh && cd ./../../
-esac
+    DIRECTORY="./app1/deploy/"
 
-# Deploy dev.start_app2.com
+    if [ -d "$DIRECTORY" ]; then
+        cd "$DIRECTORY"
+        sudo ./deployDev.sh
+        cd ./../../
+    else
+        printf "\n $DIRECTORY Does not exits!!! \n";
+    fi
+esac
 case ${start_app2:0:1} in y|Y )
-    cd ./app2/deploy/ && ./deployDev.sh && cd ./../../
+    DIRECTORY="./app2/deploy/"
+
+    if [ -d "$DIRECTORY" ]; then
+        cd "$DIRECTORY"
+        sudo ./deployDev.sh
+        cd ./../../
+    else
+        printf "\n $DIRECTORY Does not exits!!! \n";
+    fi
+esac
+case ${start_app3:0:1} in y|Y )
+    DIRECTORY="./app3/deploy/"
+
+    if [ -d "$DIRECTORY" ]; then
+        cd "$DIRECTORY"
+        sudo ./deployDev.sh
+        cd ./../../
+    else
+        printf "\n $DIRECTORY Does not exits!!! \n";
+    fi
+esac
+case ${start_app4:0:1} in y|Y )
+    DIRECTORY="./app4/deploy/"
+
+    if [ -d "$DIRECTORY" ]; then
+        cd "$DIRECTORY"
+        sudo ./deployDev.sh
+        cd ./../../
+    else
+        printf "\n $DIRECTORY Does not exits!!! \n";
+    fi
 esac
 
 # Clean up environment.
