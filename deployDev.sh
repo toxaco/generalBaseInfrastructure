@@ -10,10 +10,15 @@ fi
 
 sudo echo "Welcome to the setup. (Max exec time is ~10min)"
 
+read -p '[environment] Remove .git for environment? (y/n) ' remove_git
 read -p '[environment] Do you wish to start/restart the Environment? (y/n) ' start_env
 read -p '[environment] Do you wish to seed the MongoDB? (y/n) ' seed_mongo
 read -p '[App] Do you wish to start/restart app1? (y/n) ' start_app1
 read -p '[App] Do you wish to start/restart app2? (y/n) ' start_app2
+
+case ${remove_git:0:1} in y|Y )
+    rm -Rf ./.git
+esac
 
 case ${start_env:0:1} in y|Y )
     # Allow XDebuger to work properly.
@@ -37,12 +42,12 @@ esac
 
 # Deploy dev.start_app1.com
 case ${start_app1:0:1} in y|Y )
-    cd ./start_app1/deploy/ && ./deployDev.sh && cd ./../../
+    cd ./app1/deploy/ && ./deployDev.sh && cd ./../../
 esac
 
 # Deploy dev.start_app2.com
 case ${start_app2:0:1} in y|Y )
-    cd ./start_app2/deploy/ && ./deployDev.sh && cd ./../../
+    cd ./app2/deploy/ && ./deployDev.sh && cd ./../../
 esac
 
 # Clean up environment.
