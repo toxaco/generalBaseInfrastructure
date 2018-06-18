@@ -61,6 +61,7 @@ services:
         volumes:
             - ./data/mongo/:/data/:cached
             - ./data/mongoSeed/:/tmp/mongoSeed/:cached
+            - ./config/mongod.conf/:/etc/mongod.conf:cached
         # environment:
         #    MONGO_INITDB_ROOT_USERNAME: root
         #    MONGO_INITDB_ROOT_PASSWORD: root
@@ -73,6 +74,18 @@ services:
             - 8081:8081
         volumes:
             - ./data/mongoExpress:/data/conf:cached
+ #       environment:
+ #            ME_CONFIG_MONGODB_ADMINUSERNAME: root
+ #            ME_CONFIG_MONGODB_ADMINPASSWORD: root
+
+    mongoclient:
+        image: mongoclient/mongoclient
+        container_name: mongoclient
+        restart: always
+        ports:
+            - 3000:3000
+        volumes:
+            - ./data/mongoClient:/data/db:cached
  #       environment:
  #            ME_CONFIG_MONGODB_ADMINUSERNAME: root
  #            ME_CONFIG_MONGODB_ADMINPASSWORD: root
