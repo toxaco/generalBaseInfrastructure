@@ -16,6 +16,10 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/s
         libjpeg62-turbo-dev \
         libpng-dev \
         libmemcached-dev \
+        libssl-dev \
+        libpcre3-dev \
+        libcurl4-openssl-dev \
+        pkg-config \
         nginx-light \
         ssh-client \
         supervisor \
@@ -24,9 +28,10 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/s
         zlib1g-dev \
         libicu-dev \
         g++ \
-	    poppler-utils
+	    poppler-utils \
+	    gnupg \
+        dirmngr --install-recommends
 
-RUN apt-get clean -y && rm /var/lib/apt/lists/*.*
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-configure intl
@@ -84,17 +89,17 @@ RUN y|npm i -g webpack && y|npm i -g typescript && y|npm i -g yarn
 RUN echo "Defaults umask=0002" >> /etc/sudoers && echo "Defaults umask_override" >> /etc/sudoers
 
 # Install xdebug
-RUN pecl install xdebug \
-     && docker-php-ext-enable xdebug \
-     && sed -i '1 a xdebug.remote_autostart=true' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-     && sed -i '1 a xdebug.idekey=phpstorm' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-     && sed -i '1 a xdebug.remote_mode=req' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-     && sed -i '1 a xdebug.remote_handler=dbgp' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-     && sed -i '1 a xdebug.remote_connect_back=0 ' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-     && sed -i '1 a xdebug.remote_port=9000' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-     && sed -i '1 a xdebug.remote_host=10.254.254.254' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-     && sed -i '1 a xdebug.remote_enable=1' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-     && sed -i '1 a xdebug.max_nesting_level=500' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+# RUN pecl install xdebug \
+#      && docker-php-ext-enable xdebug \
+#      && sed -i '1 a xdebug.remote_autostart=true' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#      && sed -i '1 a xdebug.idekey=phpstorm' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#      && sed -i '1 a xdebug.remote_mode=req' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#     && sed -i '1 a xdebug.remote_handler=dbgp' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#      && sed -i '1 a xdebug.remote_connect_back=0 ' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#      && sed -i '1 a xdebug.remote_port=9000' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#      && sed -i '1 a xdebug.remote_host=10.254.254.254' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#      && sed -i '1 a xdebug.remote_enable=1' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#      && sed -i '1 a xdebug.max_nesting_level=500' /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Install Blackfire [06/2018]
 # RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
