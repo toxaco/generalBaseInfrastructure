@@ -8,3 +8,4 @@
 .vscode
 /environment/data/*
 /environment/data/.gitkeep
+environment/tools/phpStorm/vendor/

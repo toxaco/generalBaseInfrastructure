@@ -5,12 +5,21 @@ Created by Rafael (contact@rafaelphp.com)
 ------------
 
  * Run the this command (from your desired directory):
- ``git clone https://github.com/toxaco/generalBaseInfrastructure.git . && rm ./app1/.gitkeep && rm ./app2/.gitkeep && rm ./app3/.gitkeep && rm ./app4/.gitkeep && rm -Rf ./.git rm ./.gitignore``
- * Clone your applications into app1, app2, etc. (use dot at the end of "git clone"). Example: 
-   - ``cd app1 && git clone https://github.com/toxaco/generalBaseInfrastructure.git .``
- * Place your mongoDb migrations into the "./environment/data/mongoSeed/<DB_NAME>/" folder and adjust deployDev.sh 
+ 
+        git clone https://github.com/toxaco/generalBaseInfrastructure.git . && rm ./app1/.gitkeep && rm ./app2/.gitkeep && rm ./app3/.gitkeep && rm ./app4/.gitkeep && rm -Rf ./.git rm ./.gitignore
+ 
+ * Clone your applications into app1, app2, etc. (use dot at the end of "git clone"). Example:
+  
+        cd app1 && git clone https://github.com/toxaco/generalBaseInfrastructure.git .
+   
+ * Place your mongoDb migrations into the: 
+ 
+         ./environment/data/mongoSeed/<DB_NAME>/" folder and adjust deployDev.sh
+          
  * Execute this command:
- ``sudo ./deployDev.sh``
+        
+        sudo ./deployDev.sh
+        
  * Once it's finished (may take some time for the first time):
     - Open this [Admin Panel](http://localhost:9900)
     - Enter your desired password.
@@ -35,3 +44,15 @@ Details
  * toxaco/generalbaseinfrastructure:php5  
  
  Go to [Docker Hub](https://hub.docker.com/r/toxaco/generalbaseinfrastructure/tags/) for more details.
+ 
+ PHPStorm Recommendations
+ -------
+ 
+ PHP Code Sniffer:
+ 
+    https://confluence.jetbrains.com/display/PhpStorm/PHP+Code+Sniffer+in+PhpStorm
+    
+ Code Sniffer "phpcs" file path:
+ 
+    <path-to-this-folder>/environment/tools/phpStorm/vendor/bin/phpcs
+ 
