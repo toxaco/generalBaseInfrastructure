@@ -16,4 +16,3 @@ RUN apt-get purge -y --auto-remove
 
 # These two commands are SUPER important!
 EXPOSE 80
-CMD ["/usr/bin/bash”]
