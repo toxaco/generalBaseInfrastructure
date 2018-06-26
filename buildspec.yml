@@ -6,6 +6,7 @@ phases:
       - echo Build started on `date`
       - echo Running composer...
       - composer require guzzlehttp/guzzle
+      - echo next action... Done.
   post_build:
     commands:
       - echo Build completed on `date`
