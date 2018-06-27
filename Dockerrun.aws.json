@@ -52,18 +52,7 @@
                     "containerPath": "/etc/nginx/nginx.conf",
                     "readOnly": true
                 }
-            ],
-            "environment": [
-                {
-                    "name": "MYSQL_ROOT_PASSWORD",
-                    "value": "password"
-                },
-                {
-                    "name": "MYSQL_DATABASE",
-                    "value": "test"
-                }
-            ],
-            "command": "nginx"
+            ]
         }
     ]
 }
