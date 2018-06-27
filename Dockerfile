@@ -120,6 +120,4 @@ RUN apt-get clean -y
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get purge -y --auto-remove
 
-# These two commands are SUPER important!
-EXPOSE 80
-CMD ["/usr/bin/bash”]
+EXPOSE 8080
