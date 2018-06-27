@@ -1,15 +1,13 @@
-/app1/*
-!/app1/.gitkeep
-/app2/*
-!/app2/.gitkeep
+/web/bundles/
+/app/bootstrap.php.cache
+/app/cache/*
+/app/config/parameters.yml
+/app/logs/*
+!app/cache/.gitkeep
+!app/logs/.gitkeep
+/app/phpunit.xml
+/build/
 /vendor/
-/.idea/
-/node_modules/*
-.vscode
-/environment/data/*
-/environment/data/.gitkeep
-environment/tools/phpStorm/vendor/
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+/bin/
+/composer.phar
+.idea

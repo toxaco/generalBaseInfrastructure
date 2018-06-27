@@ -1,0 +1,14 @@
+branch-defaults:
+  codepipeline:
+    environment: Test-env3
+environment-defaults:
+  Test-env3:
+    branch: null
+    repository: null
+global:
+  application_name: test
+  default_ec2_keyname: null
+  default_platform: 64bit Amazon Linux 2018.03 v2.11.0 running Docker 18.03.1-ce
+  default_region: eu-west-2
+  profile: eb-cli
+  sc: git
