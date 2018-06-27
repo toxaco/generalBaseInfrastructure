@@ -54,8 +54,7 @@
                     "containerPath": "/etc/nginx/nginx.conf",
                     "readOnly": true
                 }
-            ],
-            "command": ["/bin/bash", "/var/www/html/deploy/provision.sh"]
+            ]
         }
     ]
 }
