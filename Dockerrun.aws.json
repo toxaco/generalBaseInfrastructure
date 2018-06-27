@@ -55,7 +55,7 @@
                     "readOnly": true
                 }
             ],
-            "command": "nginx"
+            "command": ["nginx"]
         }
     ]
 }
