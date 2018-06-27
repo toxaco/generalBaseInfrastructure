@@ -1,4 +1,4 @@
-FROM toxaco/generalbaseinfrastructure:php7
+FROM php:7.2.2-fpm
 
 # Exposes port 8080
 EXPOSE 8080
