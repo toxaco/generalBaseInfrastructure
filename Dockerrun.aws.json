@@ -1,23 +1,69 @@
 {
-  "AWSEBDockerrunVersion": "1",
-  "Image": {
-      "Name": "toxaco/generalbaseinfrastructure:php7",
-      "Update": "true"
-  },
-  "Ports": [
-    {
-      "ContainerPort": "80"
-    }
-  ],
-  "Volumes": [
-    {
-      "HostDirectory": "/var/app/current",
-      "ContainerDirectory": "/var/www/html"
-    },
-    {
-      "HostDirectory": "/var/app/current/deploy/config/nginx.conf",
-      "ContainerDirectory": "/etc/nginx/nginx.conf"
-    }
-  ],
-  "command": ["nginx"]
+    "AWSEBDockerrunVersion": 2,
+    "volumes": [
+        {
+            "name": "app-files",
+            "host": {
+                "sourcePath": "/var/app/current"
+            }
+        },
+        {
+            "name": "nginx-config",
+            "host": {
+                "sourcePath": "/var/app/current/deploy/config/nginx.conf"
+            }
+        }
+    ],
+    "containerDefinitions": [
+        {
+            "name": "redis",
+            "image": "redis",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 6379,
+                    "containerPort": 6379
+                }
+            ]
+        },
+        {
+            "name": "app",
+            "image": "toxaco/generalbaseinfrastructure:php7",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                },
+                {
+                    "hostPort": 443,
+                    "containerPort": 443
+                }
+            ],
+            "links": ["redis"],
+            "mountPoints": [
+                {
+                    "sourceVolume": "app-files",
+                    "containerPath": "/var/www/html",
+                    "readOnly": true
+                },
+                {
+                    "sourceVolume": "nginx-config",
+                    "containerPath": "/etc/nginx/nginx.conf",
+                    "readOnly": true
+                }
+            ],
+            "environment": [
+                {
+                    "name": "MYSQL_ROOT_PASSWORD",
+                    "value": "password"
+                },
+                {
+                    "name": "MYSQL_DATABASE",
+                    "value": "test"
+                }
+            ],
+            "command": "nginx"
+        }
+    ]
 }

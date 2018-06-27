@@ -1,0 +1,24 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+      "Name": "toxaco/generalbaseinfrastructure:php7",
+      "Update": "true",
+      "privileged": "true",
+      "command": ["/usr/sbin/nginx"]
+  },
+  "Ports": [
+    {
+      "ContainerPort": "80"
+    }
+  ],
+  "Volumes": [
+    {
+      "HostDirectory": "/var/app/current",
+      "ContainerDirectory": "/var/www/html"
+    },
+    {
+      "HostDirectory": "/var/app/current/deploy/config/nginx.conf",
+      "ContainerDirectory": "/etc/nginx/nginx.conf"
+    }
+  ]
+}
