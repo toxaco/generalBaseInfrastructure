@@ -55,7 +55,7 @@
                     "readOnly": true
                 }
             ],
-            "command": ["./var/www/html/deploy/provision.sh"]
+            "command": ["/bin/bash", "/var/www/html/deploy/provision.sh"]
         }
     ]
 }
