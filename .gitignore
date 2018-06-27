@@ -9,3 +9,7 @@
 /environment/data/*
 /environment/data/.gitkeep
 environment/tools/phpStorm/vendor/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
