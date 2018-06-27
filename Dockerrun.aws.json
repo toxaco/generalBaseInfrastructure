@@ -47,12 +47,12 @@
                 {
                     "sourceVolume": "app-files",
                     "containerPath": "/var/www/html",
-                    "readOnly": true
+                    "readOnly": false
                 },
                 {
                     "sourceVolume": "nginx-config",
                     "containerPath": "/etc/nginx/nginx.conf",
-                    "readOnly": true
+                    "readOnly": false
                 }
             ]
         }

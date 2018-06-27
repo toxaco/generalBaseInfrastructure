@@ -2,4 +2,4 @@
 
 composer require guzzlehttp/guzzle -o
 
-nginx
+service nginx restart
