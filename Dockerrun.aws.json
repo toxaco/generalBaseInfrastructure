@@ -19,6 +19,7 @@
             "name": "redis",
             "image": "redis",
             "essential": true,
+            "memory": 128,
             "portMappings": [
                 {
                     "hostPort": 6379,
@@ -30,6 +31,7 @@
             "name": "app",
             "image": "toxaco/generalbaseinfrastructure:php7",
             "essential": true,
+            "memory": 512,
             "portMappings": [
                 {
                     "hostPort": 80,
@@ -52,7 +54,8 @@
                     "containerPath": "/etc/nginx/nginx.conf",
                     "readOnly": true
                 }
-            ]
+            ],
+            "command": "nginx"
         }
     ]
 }
