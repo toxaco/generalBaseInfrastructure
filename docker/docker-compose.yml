@@ -1,0 +1,29 @@
+# Development
+
+version: '2'
+
+networks:
+    default:
+        external:
+            name: dev
+
+services:
+
+    test:
+        image: toxaco/generalbaseinfrastructure:php7
+#        build: ./
+        container_name: test
+        privileged: true
+        environment:
+            VIRTUAL_HOST:   "dev.test.com"
+            PHP_IDE_CONFIG: "serverName=test.php"
+#            CERT_NAME:      "dev"
+            APP_NAME: "test"
+            SYMFONY_ENV: "dev"
+        volumes:
+           - ./../:/var/www/html
+           - ./config/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
+           - ./config/nginx.conf:/etc/nginx/nginx.conf
+           # - ./../certificates/:/etc/nginx/certs
+        command:
+           - "/usr/bin/supervisord"
