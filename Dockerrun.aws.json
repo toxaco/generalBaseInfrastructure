@@ -12,6 +12,12 @@
             "host": {
                 "sourcePath": "/var/app/current/deploy/config/nginx.conf"
             }
+        },
+        {
+            "name": "supervisor-config",
+            "host": {
+                "sourcePath": "/var/app/current/deploy/config/supervisord.conf"
+            }
         }
     ],
     "containerDefinitions": [
@@ -52,6 +58,11 @@
                 {
                     "sourceVolume": "nginx-config",
                     "containerPath": "/etc/nginx/nginx.conf",
+                    "readOnly": false
+                },
+                {
+                    "sourceVolume": "supervisor-config",
+                    "containerPath": "/etc/supervisor/conf.d/supervisord.conf",
                     "readOnly": false
                 }
             ]
