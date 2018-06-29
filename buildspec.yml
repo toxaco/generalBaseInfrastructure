@@ -9,11 +9,7 @@ version: 0.2
      # key: "value"
 
 phases:
-  provisioning:
-    command:
-      - aws s3 cp s3://codepipeline-eu-west-2-783384176554/variables/production.env .
-      - cat production.env > /etc/environment && eval $(< production.env)
-  #install:
+  # install:
     # commands:
       # - command
   #pre_build:
@@ -21,7 +17,7 @@ phases:
       # - command
   build:
     commands:
-      - composer install -o --no-interaction
+      - composer install -o --no-interaction --no-scripts --no-autoloader
       # - command
   #post_build:
     #commands:
