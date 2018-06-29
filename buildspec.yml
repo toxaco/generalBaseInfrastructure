@@ -11,7 +11,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - apt-get update && apt-get install awscli
+      - apt-get update && apt-get install --yes --force-yes awscli
       - aws configure
       - aws sts get-caller-identity
       - aws iam get-user
@@ -22,7 +22,7 @@ phases:
       # - command
   build:
     commands:
-      - composer install -o --no-interaction --no-scripts
+      - composer install -o --no-interaction
       # - command
   #post_build:
     #commands:
