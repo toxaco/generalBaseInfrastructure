@@ -8,10 +8,17 @@
             </div>
 
             <div id="next">
-                <h2>{{ "now"|date("d/m/Y h:i:s") }}</h2>
                 <p>
+                {% if testing|default(false) %}
+                    <h1>{{ testing }}</h1>
                     <img src="https://media.giphy.com/media/349qKnoIBHK1i/giphy.gif" alt="Coding...">
+                {% else %}
+                    <h1>Fail :/</h1>
+                    <img src="https://media.giphy.com/media/g8CJl0epg71MQ/giphy.gif" alt="Coding...">
+                {% endif %}
                 </p>
+
+                <br><br><h3>Current time: {{ "now"|date("d/m/Y h:i:s") }}</h3>
             </div>
 
         </div>
