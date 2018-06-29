@@ -17,7 +17,7 @@ phases:
       # - command
   build:
     commands:
-      - composer install -o --no-interaction --no-scripts --no-autoloader
+      - composer install -o --no-interaction --no-scripts
       # - command
   #post_build:
     #commands:
