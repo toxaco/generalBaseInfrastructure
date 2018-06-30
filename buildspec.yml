@@ -12,7 +12,7 @@ phases:
   install:
     commands:
       - apt-get update && apt-get install -y awscli
-      - printenv
+      - printenv > /etc/environment && eval $(< printenv)
       - aws configure
       - aws sts get-caller-identity
       - aws iam get-user
