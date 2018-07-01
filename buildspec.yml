@@ -21,10 +21,10 @@ phases:
       # - aws sts get-caller-identity
       # - aws iam get-user
       # - aws configure
-      - aws s3 cp $CURRENT_ENV_PARAMS .
+      - aws s3 cp $CURRENT_ENV_PARAMS ./depo_params/
       - ls
-      - echo $(< "./$(ls)")
-      - eval $(< "./$(ls)") composer install -o --no-interaction
+      - echo $(< "./depo_params/$(ls)")
+      - eval $(< "./depo_params/$(ls)") composer install -o --no-interaction
       # - command
   #post_build:
     #commands:
