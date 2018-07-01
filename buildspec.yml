@@ -22,9 +22,9 @@ phases:
       # - aws iam get-user
       # - aws configure
       - aws s3 cp $CURRENT_ENV_PARAMS ./depo_params/
-      - ls
-      - echo $(< "./depo_params/$(ls)")
-      - eval $(< "./depo_params/$(ls)") composer install -o --no-interaction
+      - ls ./depo_params
+      - echo $(< "./depo_params/$(ls ./depo_params)")
+      - eval $(< "./depo_params/$(ls ./depo_params)") composer install -o --no-interaction
       # - command
   #post_build:
     #commands:
