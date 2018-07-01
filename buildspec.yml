@@ -21,7 +21,7 @@ phases:
       # - aws sts get-caller-identity
       # - aws iam get-user
       # - aws configure
-      - aws s3 cp $($CURRENT_ENV_PARAMS) ./deploy_params.env
+      - aws s3 cp $CURRENT_ENV_PARAMS ./deploy_params.env
       - cat deploy_params.env > /etc/environment && eval $(< deploy_params.env)
       - printenv
       - composer install -o --no-interaction
