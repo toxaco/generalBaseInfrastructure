@@ -21,9 +21,11 @@ phases:
       # - aws sts get-caller-identity
       # - aws iam get-user
       # - aws configure
-      # - aws s3 cp $CURRENT_ENV_PARAMS .
-      - aws s3 cp s3://codepipeline-eu-west-2-783384176554/variables/production.env .
-      - cat production.env > /etc/environment && eval $(< production.env)
+      - aws s3 cp $CURRENT_ENV_PARAMS ./deploy_envs/
+      # - aws s3 cp s3://codepipeline-eu-west-2-783384176554/variables/production.env ./deploy_files/
+      - cat "./deploy_envs/$(ls ./deploy_envs/)"
+      - cat ./deploy_envs/production.env
+      - cat ./deploy_envs/production.env > /etc/environment && eval $(< ./deploy_envs/production.env)
       - printenv
       - composer install -o --no-interaction
       # - command
