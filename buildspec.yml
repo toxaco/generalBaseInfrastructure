@@ -9,9 +9,9 @@ version: 0.2
      # key: "value"
 
 phases:
-  install:
-    commands:
-      - apt-get update && apt-get install -y awscli
+#  install:
+#    commands:
+#      - apt-get update && apt-get install -y awscli
   #pre_build:
     #commands:
       # - command
@@ -21,8 +21,8 @@ phases:
       # - aws sts get-caller-identity
       # - aws iam get-user
       # - aws configure
-      - aws s3 cp s3://codepipeline-eu-west-2-783384176554/variables/production.env .
-      - cat production.env > /etc/environment && eval $(< production.env)
+      - aws s3 cp $CURRENT_ENV_PARAMS ./params.env
+      - cat params.env > /etc/environment && eval $(< params.env)
       - composer install -o --no-interaction
       # - command
   #post_build:
