@@ -12,17 +12,18 @@ phases:
   install:
     commands:
       - apt-get update && apt-get install -y awscli
-      - printenv > /etc/environment && eval $(< printenv)
-      - aws configure
-      - aws sts get-caller-identity
-      - aws iam get-user
-      - aws s3 cp s3://codepipeline-eu-west-2-783384176554/variables/production.env .
-      - cat production.env > /etc/environment && eval $(< production.env)
   #pre_build:
     #commands:
       # - command
   build:
     commands:
+      - printenv
+      - aws sts get-caller-identity
+      - aws iam get-user
+      - ls ~/.aws
+      - aws configure
+      - aws s3 cp s3://codepipeline-eu-west-2-783384176554/variables/production.env .
+      - cat production.env > /etc/environment && eval $(< production.env)
       - composer install -o --no-interaction
       # - command
   #post_build:
