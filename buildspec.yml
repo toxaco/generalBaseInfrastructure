@@ -23,9 +23,9 @@ phases:
       # - aws configure
       - aws s3 cp $CURRENT_ENV_PARAMS ./depo_params/
       - ls -al ./depo_params
-      - echo $(< "./toDelete/$(ls ./toDelete/)")
-      - echo $(< "./depo_params/$(ls ./depo_params/)")
-      - eval $(< "./depo_params/$(ls ./depo_params/)") composer install -o --no-interaction
+      - echo $(< "toDelete/$(ls ./toDelete/)")
+      - echo $(< "depo_params/$(ls ./depo_params/)")
+      - eval $(< "depo_params/$(ls ./depo_params/)") composer install -o --no-interaction
       # - command
   #post_build:
     #commands:
