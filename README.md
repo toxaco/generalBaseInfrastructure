@@ -1,5 +1,26 @@
-Auto-Deploy instuctions
+Auto-Deploy instructions
 ---
 
-* production.env
-s3://codepipeline-eu-west-2-783384176554/variables/production.env
+Setup
+---
+
+### Pre
+
+* soon.
+
+### Post
+
+* soon.
+
+
+Deploying
+----
+
+### Config
+* Update AWS codebuild with any new environment parameter.
+* Update AWS elasticbeanstalk with any new environment parameter.
+* Update AWS S3 buckets <codepipeline buket/variables/production.env>
+
+### Deploy
+* Push new code to master branch.
+* Check AWS codepipeline for status if wanted.
