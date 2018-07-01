@@ -22,10 +22,7 @@ phases:
       # - aws iam get-user
       # - aws configure
       - aws s3 cp $CURRENT_ENV_PARAMS ./deploy_params.env
-      - eval $(< ./deploy_params.env)
-      - echo ./deploy_params.env > /etc/environment
-      - printenv
-      - composer install -o --no-interaction
+      - eval $(< ./deploy_params.env) composer install -o --no-interaction
       # - command
   #post_build:
     #commands:
