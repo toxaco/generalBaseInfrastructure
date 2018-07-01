@@ -22,9 +22,9 @@ phases:
       # - aws iam get-user
       # - aws configure
       - aws s3 cp $CURRENT_ENV_PARAMS .
-      - $(ls)
-      - echo $(< $(ls))
-      - eval $(< $(ls)) composer install -o --no-interaction
+      - ls
+      - echo $(< "./$(ls)")
+      - eval $(< "./$(ls)") composer install -o --no-interaction
       # - command
   #post_build:
     #commands:
