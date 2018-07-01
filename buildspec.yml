@@ -9,9 +9,9 @@ version: 0.2
      # key: "value"
 
 phases:
-  install:
-    commands:
-      - apt-get update && apt-get install -y awscli
+  # install:
+    # commands:
+      # - apt-get update && apt-get install -y awscli
   #pre_build:
     #commands:
       # - command
@@ -21,15 +21,12 @@ phases:
       # - aws sts get-caller-identity
       # - aws iam get-user
       # - aws configure
-      - aws s3 cp $CURRENT_ENV_PARAMS ./deploy_envs/
+      # - aws s3 cp $CURRENT_ENV_PARAMS ./deploy_envs/
+      # - cat "./deploy_envs/$(ls ./deploy_envs/)" > /etc/environment
       # - aws s3 cp s3://codepipeline-eu-west-2-783384176554/variables/production.env ./deploy_files/
-      - cat "./deploy_envs/$(ls ./deploy_envs/)" > /etc/environment
-      - cat /etc/environment
-      - export TESTING="tested" && echo $TESTING
-      - export $(< "./deploy_envs/$(ls ./deploy_envs/)") && echo $SYMFONY__DATABASE__ANOTHER
       # - eval $(< "./deploy_envs/$(ls ./deploy_envs/)") composer install -o --no-interaction
-      - export $(< "./deploy_envs/$(ls ./deploy_envs/)") && composer install -o --no-interaction
-      # - command
+      # - export $(< "./deploy_envs/$(ls ./deploy_envs/)") && composer install -o --no-interaction
+      - composer install -o --no-interaction
   #post_build:
     #commands:
       # - command
