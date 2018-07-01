@@ -23,12 +23,12 @@ phases:
       # - aws configure
       - aws s3 cp $CURRENT_ENV_PARAMS ./deploy_envs/
       # - aws s3 cp s3://codepipeline-eu-west-2-783384176554/variables/production.env ./deploy_files/
-      - ls -al ./deploy_envs/
-      - cat "./deploy_envs/$(ls ./deploy_envs/)"
-      - cat ./deploy_envs/production.env
-      - cat ./deploy_envs/production.env > /etc/environment && eval $(< ./deploy_envs/production.env)
-      - printenv
-      - composer install -o --no-interaction
+      - cat "./deploy_envs/$(ls ./deploy_envs/)" > /etc/environment
+      - cat /etc/environment
+      - export TESTING="tested" && echo $TESTING
+      - export $(< "./deploy_envs/$(ls ./deploy_envs/)") && echo $SYMFONY__DATABASE__ANOTHER
+      # - eval $(< "./deploy_envs/$(ls ./deploy_envs/)") composer install -o --no-interaction
+      - export $(< "./deploy_envs/$(ls ./deploy_envs/)") && composer install -o --no-interaction
       # - command
   #post_build:
     #commands:
