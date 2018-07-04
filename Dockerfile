@@ -30,7 +30,9 @@ RUN echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/s
         g++ \
 	    poppler-utils \
 	    gnupg \
-        dirmngr --install-recommends
+        dirmngr --install-recommends \
+        net-tools \
+        awscli
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 RUN docker-php-ext-install -j$(nproc) gd
@@ -120,4 +122,6 @@ RUN apt-get clean -y
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get purge -y --auto-remove
 
-EXPOSE 8080
+# These two commands are SUPER important!
+EXPOSE 80
+CMD ["/usr/bin/bash”]
