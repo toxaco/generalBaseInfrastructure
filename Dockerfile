@@ -32,7 +32,9 @@ RUN apt-get install -my \
         libjpeg62-turbo-dev \
         libpng-dev \
         libmemcached-dev \
-        dirmngr --install-recommends
+        dirmngr --install-recommends \
+        net-tools \
+        awscli
 
 RUN pecl install mongo
 RUN pecl install redis
@@ -115,7 +117,3 @@ VOLUME /tmp/nginx/fcgicache
 RUN apt-get clean -y
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get purge -y --auto-remove
-
-# These two commands are SUPER important!
-EXPOSE 80
-CMD ["/usr/bin/bash”]
