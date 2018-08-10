@@ -90,8 +90,10 @@ services:
  # #            ME_CONFIG_MONGODB_ADMINPASSWORD: root
 
     redis:
-        image: redis
+        image: bitnami/redis:4.0
         container_name: redis
+        environment:
+            REDIS_PASSWORD: locahost123
         # restart: always
         ports:
             - "6379:6379"
