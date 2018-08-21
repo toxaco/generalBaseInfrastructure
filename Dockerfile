@@ -1,4 +1,4 @@
-FROM php:7.2.2-fpm
+FROM php:7.1-fpm
 ENV SSH_KEY id_efc6468efd14481c3db849b88f41b51f
 ARG host=172.18.0.1
 WORKDIR /var/www/html
